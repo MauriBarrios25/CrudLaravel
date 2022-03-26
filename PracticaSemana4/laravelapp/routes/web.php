@@ -15,7 +15,8 @@ use App\Http\Controllers\Petcontroller;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pet');
 });
 
 Route::resource('pet',PetController::class);
+Route::resource('/', Petcontroller::class);
