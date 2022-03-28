@@ -14,7 +14,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        $data['pets']=Pet::paginate(5);
+        $data['pets']=Pet::paginate();
         return view('pet.index', $data);
     }
 
@@ -38,7 +38,9 @@ class PetController extends Controller
     {
         $petData = request()->except('_token');
         Pet::insert($petData);
-        return response()->json($petData);
+        $data['pets']=Pet::paginate();
+        return view('pet.index', $data);
+        
     }
 
     /**
