@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Petcontroller;
+use App\Http\Controllers\SucursalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,6 @@ use App\Http\Controllers\Petcontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('pet');
-});
 
-Route::resource('pet',PetController::class);
-Route::resource('/', Petcontroller::class);
+Route::resource('/',SucursalController::class);
+Route::resource('sucur',SucursalController::class);

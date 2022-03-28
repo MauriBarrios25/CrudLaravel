@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pet;
+use App\Models\Sucursales;
 
-class PetController extends Controller
+class SucursalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class PetController extends Controller
      */
     public function index()
     {
-        $data['pets']=Pet::paginate();
-        return view('pet.index', $data);
+        $data['sucursales']=Sucursales::paginate();
+        return view('sucursales.index', $data);
+
     }
 
     /**
@@ -25,7 +26,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        return view('pet.create');
+        return view('sucursales.create');
     }
 
     /**
@@ -36,11 +37,10 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        $petData = request()->except('_token');
-        Pet::insert($petData);
-        $data['pets']=Pet::paginate();
-        return view('pet.index', $data);
-        
+        $sucurData = request()->except('_token');
+        Sucursales::insert($sucurData);
+        $data['sucursales']=Sucursales::paginate();
+        return view('sucursales.index', $data);
     }
 
     /**
@@ -62,8 +62,8 @@ class PetController extends Controller
      */
     public function edit($id)
     {
-        $pet=Pet::findOrFail($id);
-        return view('pet.edit', compact('pet'));
+        $sucur=Sucursales::findOrFail($id);
+        return view('sucursales.edit', compact('sucur'));
     }
 
     /**
@@ -75,9 +75,9 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $petData=request()->except(['_token' , '_method']);
-        Pet::where('id', '=', $id)->update($petData);
-        return redirect('pet');
+        $sucurData=request()->except(['_token' , '_method']);
+        Sucursales::where('id', '=', $id)->update($sucurData);
+        return redirect('sucur');
     }
 
     /**
@@ -86,10 +86,10 @@ class PetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)     
+    public function destroy($id)
     {
-        Pet::destroy($id);
-        return redirect('pet');
+        Sucursales::destroy($id);
+        return redirect('sucur');
 
     }
 }

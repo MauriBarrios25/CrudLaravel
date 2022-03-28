@@ -10,7 +10,7 @@
 </head>
 <body style="background-color:#202225;">
 
-@include('pet.nav')
+@include('sucursales.nav')
 <div class="container-sm">
 <h1 class="text-light">Listado de Productos</h1>
 <table class="table table-light table-sm">
@@ -18,41 +18,46 @@
         <tr>
             <th>N°</th>
             <th>Nombre</th>
-            <th>Edad</th>
+            <th>Cantidad</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
+            <th>Distribuidor</th>
             <th>Accion</th>
+            <th>Accion 2</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($pets as $pet)
+        @foreach($sucursales as $sucur)
         <tr>
-            <td>{{ $pet->id }}</td>
-            <td>{{ $pet->name }}</td>
-            <td>{{ $pet->age }}</td>
-            <td>
-            
-            <div class="form-group">
-            <div class="row">
-            <form action="{{ url('/pet/'.$pet->id) }}" method="POST" >
+            <td>{{ $sucur->id }}</td>
+            <td>{{ $sucur->nombre }}</td>
+            <td>{{ $sucur->cantidad }}</td>
+            <td>{{ $sucur->precio_compra}}</td>
+            <td>{{ $sucur->precio_venta}}</td>
+            <td>{{ $sucur->distribuidor}}</td>
+            <th>
+            <form action="{{ url('/sucur/'.$sucur->id) }}" method="POST" >
                 @csrf
                 {{ method_field('DELETE') }}
                 
                     <input type="submit" value="Eliminar"
-                    onclick="return confirm('Desea eliminar el registro?')" class="btn btn-outline-danger">  
+                    onclick="return confirm('¿Desea eliminar el registro?')" class="btn btn-outline-danger">  
             
             
             </form>
-            <form action="{{ url('/pet/'.$pet->id,'edit') }}" method="POST" >
+</th>
+<th>
+            <form action="{{ url('/sucur/'.$sucur->id,'edit') }}" method="POST" >
 
                  @csrf
                 {{ method_field('GET') }}
                
                     <input type="submit" value="Editar"
-                    onclick="return confirm('Desea modificar el registro?')" class="btn btn-outline-success"> 
+                    onclick="return confirm('¿Desea modificar el registro?')" class="btn btn-outline-success"> 
 
 
             </form>
-</div>
-</div>
+</th>
             </td>
             <a></a>
         </tr>
